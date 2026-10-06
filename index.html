@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <title>Thainara · Mis XV</title>
+   
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <div id="toast" class="toast">¡Información copiada! 📋✨</div>
+
+   <canvas id="petalsCanvas"></canvas>
+
+   <audio id="musicaInvitacion" preload="auto" loop>
+      <source src="img/musica.mp3" type="audio/mpeg">
+   </audio>
+
+   <div id="music-toggle" class="music-btn" onclick="toggleMusic()">
+       <i class="fa-solid fa-music"></i>
+   </div>
+   
+   <!-- INTRO: SOBRE ESTÁTICO -->
+   <div id="contenedor-principal" onclick="activarInvitacion()">
+       <img src="img/sobre.png" alt="Sobre" id="imgSobreEstetica">
+       <video id="videoSobre" playsinline muted preload="auto">
+           <source src="img/1.mp4" type="video/mp4">
+       </video>
+       <div id="capa-boton">
+           <div class="boton-rosa-inicio" id="btn-toca-abrir">TOCÁ EL SOBRE PARA ABRIR</div>
+       </div>
+   </div>
+
+   <!-- INVITACIÓN WEB EDITORIAL -->
+   <div id="seccion-final" class="oculto">
+
+       <!-- PORTADA A PANTALLA COMPLETA -->
+       <header class="hero-portada-full reveal">
+           <img src="img/Portada.png" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80'" alt="Thainara" class="portada-img-full">
+       </header>
+
+       <!-- SECCIONES CON EL FONDO REPETIDO Y MAGENTA OSCURO -->
+       <div class="bloque-patron-fondo">
+           
+           <section class="section-pad reveal text-center" id="std-section">
+               <h2 class="editorial-heading mt-10">SAVE THE DATE</h2>
+               <p class="section-sub-label">Tocá cada círculo para descubrir la fecha</p>
+
+               <div class="scratch-circles-wrapper mt-25" id="circlesWrapper">
+                   <div class="circle-scratch-card" onclick="revelarCirculo(this, 0)">
+                       <div class="circle-reveal-content">
+                           <span class="circle-number">31</span>
+                           <span class="circle-label">DÍA</span>
+                       </div>
+                       <div class="circle-overlay-tap" id="tap-0">
+                           <span>TOCÁ</span>
+                       </div>
+                   </div>
+                   <div class="circle-scratch-card" onclick="revelarCirculo(this, 1)">
+                       <div class="circle-reveal-content">
+                           <span class="circle-number">10</span>
+                           <span class="circle-label">MES</span>
+                       </div>
+                       <div class="circle-overlay-tap" id="tap-1">
+                           <span>TOCÁ</span>
+                       </div>
+                   </div>
+                   <div class="circle-scratch-card" onclick="revelarCirculo(this, 2)">
+                       <div class="circle-reveal-content">
+                           <span class="circle-number">2026</span>
+                           <span class="circle-label">AÑO</span>
+                       </div>
+                       <div class="circle-overlay-tap" id="tap-2">
+                           <span>TOCÁ</span>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="countdown-card" id="countdownCard">
+                   <p class="countdown-title">FALTAN POCOS DÍAS</p>
+                   <div class="countdown-boxes">
+                       <div class="cd-box"><span id="cd-days">00</span><p>Días</p></div>
+                       <div class="cd-sep">:</div>
+                       <div class="cd-box"><span id="cd-hours">00</span><p>Hs</p></div>
+                       <div class="cd-sep">:</div>
+                       <div class="cd-box"><span id="cd-mins">00</span><p>Min</p></div>
+                       <div class="cd-sep">:</div>
+                       <div class="cd-box"><span id="cd-secs">00</span><p>Seg</p></div>
+                   </div>
+               </div>
+           </section>
+
+           <section class="section-pad reveal">
+               <div class="invitarte-card">
+                   <p class="invite-quote mt-10">
+                       Con gran alegría, tengo el honor de invitarte a la celebración de mis XV años. Será un placer contar con tu distinguida presencia en esta noche especial.
+                   </p>
+               </div>
+           </section>
+
+           <!-- GALERÍA DE FOTOS (CARRUSEL) -->
+           <section class="section-pad reveal">
+               <h2 class="editorial-heading">MIS MOMENTOS</h2>
+               <p class="title-sub-cursive">Deslizá para ver las fotos</p>
+
+               <div class="gallery-slider-wrapper mt-20">
+                   <div class="gallery-slider" id="gallerySlider">
+                       <div class="slide-item"><img src="img/foto1.png" alt="Foto 1"></div>
+                       <div class="slide-item"><img src="img/foto2.png" alt="Foto 2"></div>
+                       <div class="slide-item"><img src="img/foto3.png" alt="Foto 3"></div>
+                       <div class="slide-item"><img src="img/foto4.png" alt="Foto 4"></div>
+                       <div class="slide-item"><img src="img/foto5.png" alt="Foto 5"></div>
+                       <div class="slide-item"><img src="img/foto6.png" alt="Foto 6"></div>
+                       <div class="slide-item"><img src="img/foto7.png" alt="Foto 7"></div>
+                   </div>
+                   <div class="slider-hint mt-10">
+                       <i class="fa-solid fa-arrow-left-long"></i> Deslizá <i class="fa-solid fa-arrow-right-long"></i>
+                   </div>
+               </div>
+           </section>
+
+           <section class="section-pad location-section-spacious reveal">
+               <h2 class="editorial-heading">UBICACIONES</h2>
+               <p class="title-sub-cursive">Dónde celebramos</p>
+
+               <div class="venue-card-watercolor mt-25">
+                   <div class="venue-icon-wrap"><i class="fa-solid fa-church"></i></div>
+                   <h3 class="venue-title">CEREMONIA RELIGIOSA</h3>
+                   <p class="venue-date-label">28 de octubre</p>
+                   <p class="venue-time">19:00 HS</p>
+                   <p class="venue-desc">Parroquia Sagrado Corazón de Jesús</p>
+                   <div class="btn-group-center mt-15">
+                       <a href="https://maps.app.goo.gl/QadowJ4ty8BFrpKk6?g_st=ac" target="_blank" class="btn btn-magenta"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                   </div>
+               </div>
+
+               <div class="venue-card-watercolor mt-35">
+                   <div class="venue-icon-wrap"><i class="fa-solid fa-glass-cheers"></i></div>
+                   <h3 class="venue-title">RECEPCIÓN & FIESTA</h3>
+                   <p class="venue-date-label">31 de octubre</p>
+                   <p class="venue-time">19:30 HS</p>
+                   <p class="venue-desc">Valentina Fiestas</p>
+                   <div class="btn-group-center mt-15">
+                       <a href="https://maps.app.goo.gl/QadowJ4ty8BFrpKk6" target="_blank" class="btn btn-magenta"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                   </div>
+               </div>
+           </section>
+
+           <!-- DRESS CODE CON PALETA DE COLORES -->
+           <section class="section-pad reveal text-center">
+               <div class="dress-icon-head mt-10"><i class="fa-solid fa-user-tie"></i></div>
+               <h2 class="editorial-heading mt-10">DRESS CODE</h2>
+               <p class="title-sub-cursive">Código de Vestimenta</p>
+
+               <p class="dress-code-subtitle mt-10">ELEGANTE</p>
+
+               <div class="scratch-circles-wrapper mt-20 color-palette-wrapper">
+                   <div class="color-circle" style="background-color: #0b2914;" title="Verde"></div>
+                   <div class="color-circle" style="background-color: #0c1c44;" title="Azul"></div>
+                   <div class="color-circle" style="background-color: #8b1e52;" title="Fucsia"></div>
+                   <div class="color-circle" style="background-color: #f7f3a8;" title="Amarillo Pálido"></div>
+                   <div class="color-circle" style="background-color: #bce3fd;" title="Celeste"></div>
+                   <div class="color-circle" style="background-color: #e58735;" title="Naranja"></div>
+               </div>
+
+               <div class="mt-25">
+                   <a href="https://pin.it/7sTlObgUD" target="_blank" class="btn btn-pinterest">
+                       <i class="fa-brands fa-pinterest"></i> INSPIRACIÓN EN PINTEREST
+                   </a>
+               </div>
+           </section>
+
+          <!-- SUGERENCIA DE REGALO -->
+           <section class="section-pad reveal">
+               <div class="gift-envelope-card-paper text-center">
+                   <div class="gift-icon-head mt-10"><i class="fa-solid fa-gift"></i></div>
+                   <h2 class="editorial-heading mt-10">SUGERENCIA DE REGALO</h2>
+                   <p class="title-sub-cursive">Un detalle con la quinceañera</p>
+                   <p class="gift-text-paper mt-10">
+                       No te preocupes por encontrar el regalo perfecto: compartir este día contigo y recibir tu cariño será lo más importante. Si aun así deseas hacerme un presente, <strong>maquillaje, ropa o un sobre</strong> serán opciones que recibiré con mucho cariño.
+                   </p>
+               </div>
+           </section>
+
+           <!-- CONFIRMACIÓN DE ASISTENCIA -->
+           <section class="section-pad reveal text-center">
+               <h2 class="editorial-heading">CONFIRMACIÓN DE ASISTENCIA</h2>
+               <p class="title-sub-cursive">Esperamos contar con vos</p>
+               <p class="rsvp-limit-text mt-10">Confirmar hasta el 15 de octubre de 2026</p>
+
+               <a href="https://wa.me/595991624591?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Thainara%20✨" class="btn btn-editorial mt-25" target="_blank">
+                   <i class="fa-brands fa-whatsapp"></i> CONFIRMAR POR WHATSAPP
+               </a>
+           </section>
+
+       </div>
+
+       <!-- CIERRE Y FIRMA ESPACIADA -->
+       <div class="bloque-verde-oliva">
+           <section class="section-pad reveal text-center">
+               <div class="farewell-signature-spaced mt-10">
+                   <p class="farewell-with-love">Con cariño,</p>
+                   <h2 class="farewell-couple-silver mt-15">Thainara</h2>
+               </div>
+           </section>
+
+           <footer class="editorial-footer">
+               <p>© GHISA DIGITAL · Tel: 0981 228 720</p>
+           </footer>
+       </div>
+
+   </div>
+
+   <script src="script.js"></script>
+</body>
+</html>
